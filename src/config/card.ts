@@ -8,6 +8,7 @@ export enum MODES {
   FAN = 'fan',
   PRESET = 'preset',
   SWING = 'swing',
+  SWING_HORIZ = 'swing_horizontal'
 }
 
 export type ModeValue = {
@@ -26,7 +27,7 @@ export type ModeControlObject = Record<string, boolean | ModeValue> & {
 }
 
 /**
- * Modes (hvac, fac, preset, swing)
+ * Modes (hvac, fac, preset, swing, swing horizontal)
  * that might exist as attributes on a climate entity.
  * Modes can be set to a value based on a list of options
  * that are provided in the attributes of the entity.
@@ -38,6 +39,7 @@ type ModeControl = {
   fan: ModeControlValue
   preset: ModeControlValue
   swing: ModeControlValue
+  swing_horizontal: ModeControlValue
 }
 
 interface CardConfig {

@@ -9,6 +9,7 @@ import postCSSLit from 'rollup-plugin-postcss-lit'
 import postCSSPresetEnv from 'postcss-preset-env'
 import dts from 'rollup-plugin-dts'
 import inject from 'rollup-plugin-inject-process-env'
+import gzipPlugin from 'rollup-plugin-gzip'
 
 const shared = (DEBUG) => [
   resolve({
@@ -60,17 +61,21 @@ export default [
           comments: false,
         },
       }),
+      gzipPlugin({
+        additionalFiles: ['src/simple-thermostat.ts']
+      })
     ],
-  },
-  {
-    input: 'src/simple-thermostat.ts',
-    output: {
-      file: 'dist/simple-thermostat.debug.js',
-      format: 'es',
-      name: 'SimpleThermostat',
-    },
-    plugins: shared(true),
-  },
+  }
+  // ,
+  // {
+  //   input: 'src/simple-thermostat.ts',
+  //   output: {
+  //     file: 'dist/simple-thermostat.debug.js',
+  //     format: 'es',
+  //     name: 'SimpleThermostat',
+  //   },
+  //   plugins: shared(true),
+  // },
   // {
   //   input: './dist/config/card.d.ts',
   //   output: [{ file: 'dist/st.d.ts', format: 'es' }],
